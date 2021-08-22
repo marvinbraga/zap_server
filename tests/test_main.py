@@ -2,7 +2,7 @@
 """
 GNU AFFERO GENERAL PUBLIC LICENSE
 Version 3, 19 November 2007
-marvinbraga/zap_server
+https://github.com/marvinbraga/zap_server
 Marcus Vinicius Braga, marcus@marvinbraga.com.br
 Aug 2021
 
@@ -10,10 +10,10 @@ Test Main Module
 """
 
 import pytest
+
 from main import MainApplication
 
-
-server_app = MainApplication()
+main_app = MainApplication()
 
 
 @pytest.fixture
@@ -22,7 +22,7 @@ def initialize_main():
     Start Instance of Main Class.
     :return: Object or False
     """
-    global server_app
+    global main_app
     result = main_app.start('0.0.0.0', 8777, '--mock', '--no_headless') if main_app else False
     return result
 

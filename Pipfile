@@ -8,7 +8,6 @@ pylint = "*"
 ipython = "*"
 pytest = "*"
 flake8 = "*"
-v = {editable = true,version = "*"}
 codecov = "*"
 coverage = "*"
 pytest-cov = "*"

@@ -2,7 +2,7 @@
 """
 GNU AFFERO GENERAL PUBLIC LICENSE
 Version 3, 19 November 2007
-marvinbraga/zap_server
+https://github.com/marvinbraga/zap_server
 Marcus Vinicius Braga, marcus@marvinbraga.com.br
 Aug 2021
 
@@ -10,8 +10,8 @@ Test Server Application Module
 """
 
 import pytest
-from apps.zap_server_app import ZapServerApp
 
+from apps.zap_server_app import ZapServerApp
 
 server_app = ZapServerApp()
 
@@ -33,4 +33,3 @@ def test_start_main(initialize_server_app):
     :return:
     """
     assert initialize_server_app
-
