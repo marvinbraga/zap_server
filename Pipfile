@@ -3,10 +3,25 @@ url = "https://pypi.org/simple"
 verify_ssl = true
 name = "pypi"
 
-[packages]
-pylint = "*"
-
 [dev-packages]
+pylint = "*"
+ipython = "*"
+pytest = "*"
+flake8 = "*"
+v = {editable = true,version = "*"}
+codecov = "*"
+coverage = "*"
+pytest-cov = "*"
+
+[packages]
+selenium = "*"
+pillow = "*"
+beautifulsoup4 = "*"
+webdriver-manager = "*"
+pyzbar = "*"
+qrcode = "*"
+python-decouple = "*"
+pickle-mixin = "*"
 
 [requires]
 python_version = "3.9"
