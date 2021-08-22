@@ -11,7 +11,7 @@ Test Server Application Module
 
 import pytest
 
-from apps.zap_server_app import ZapServerApp
+# from apps.zap_server_app import ZapServerApp
 
 # server_app = ZapServerApp()
 
