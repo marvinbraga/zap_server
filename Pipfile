@@ -19,7 +19,6 @@ beautifulsoup4 = "*"
 webdriver-manager = "*"
 pyzbar = "*"
 qrcode = "*"
-python-decouple = "*"
 pickle-mixin = "*"
 python-dotenv = "*"
 
