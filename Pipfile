@@ -21,6 +21,7 @@ pyzbar = "*"
 qrcode = "*"
 python-decouple = "*"
 pickle-mixin = "*"
+python-dotenv = "*"
 
 [requires]
 python_version = "3.9"

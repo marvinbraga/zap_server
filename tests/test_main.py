@@ -64,5 +64,14 @@ def test_start_mock(initialize_mock_main):
     :param initialize_mock_main: Mock fixture.
     :return:
     """
-    main = initialize_mock_main
-    assert main.adapter == FactoryWhatsappAdapter.MOCK
+    assert initialize_mock_main.adapter == FactoryWhatsappAdapter.MOCK
+
+
+def test_start_no_headless(initialize_no_headless_main):
+    """
+    Check Server Default Initialization in 'no headless' mode.
+    :param initialize_no_headless_main: no_headless fixture.
+    :return:
+    """
+    main = initialize_no_headless_main
+    assert main.adapter == FactoryWhatsappAdapter.DEFAULT and main.no_headless

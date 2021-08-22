@@ -11,7 +11,8 @@ Settings Server Module
 
 import os
 
-from decouple import config
+from dotenv import load_dotenv
 
+load_dotenv()
 BASE_DIR = os.path.normpath(os.path.dirname(os.path.dirname(os.path.abspath(__file__))) + '/server')
-AUTH_KEY = config('AUTH_KEY', cast=str)
+AUTH_KEY = os.environ.get('AUTH_KEY')
