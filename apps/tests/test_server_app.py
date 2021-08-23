@@ -8,29 +8,51 @@ Aug 2021
 
 Test Server Application Module
 """
+import os
+import subprocess
+from multiprocessing.connection import Client
 
 import pytest
 
-# from apps.zap_server_app import ZapServerApp
+from core import settings
 
-# server_app = ZapServerApp()
+
+class ProcessZapServer:
+    """
+    Class to run Zap Server in subprocess.
+    """
+
+    @staticmethod
+    def run(file):
+        """
+        Run subprocess main.py
+        :return:
+        """
+        module = os.path.normpath(os.path.join(settings.BASE_DIR, file))
+        subprocess.Popen(['pipenv', 'shell'], cwd=None)
+        subprocess.run(['pipenv', 'run', module, '--no_headless'])
+
+
+ProcessZapServer.run('main.py')
 
 
 @pytest.fixture
-def initialize_server_app():
+def initialize_client_app():
     """
-    Start Instance of ZapServer.
+    Start Instance of client to ZapServer.
     :return: Object or False
     """
-    # global server_app
-    # result = server_app.execute() if server_app else False
-    result = True
-    return result
+    return Client(('127.0.0.1', 8777), authkey=settings.AUTH_KEY.encode())
 
 
-def test_start_main(initialize_server_app):
+def test_start_main(initialize_client_app):
     """
     Check Zap Server Initialization.
     :return:
     """
-    assert initialize_server_app
+    c = initialize_client_app
+    command = 'test_start_main||SendMessage||Contact Name||Initial Test.'
+    c.send(command)
+    resp = c.recv()
+    print(f'Response: {resp}')
+    assert initialize_client_app
