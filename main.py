@@ -32,7 +32,7 @@ class MainApplication:
         self._con.show('Starting Zap Server...')
         return self
 
-    def _verify_args(self, *args, **kwargs):
+    def _verify_args(self, *args):
         self._con.show('Verifying args...')
         if len(args) <= 2:
             pass
@@ -58,11 +58,10 @@ class MainApplication:
             self._con.show('--no_headless')
         return self
 
-    def start(self, *args, **kwargs):
+    def start(self, *args):
         """
         Start Server Application Instance and send args.
-        :param args:
-        :param kwargs:
+        :param args: System arguments.
         :return:
         """
         result = self if args else False
