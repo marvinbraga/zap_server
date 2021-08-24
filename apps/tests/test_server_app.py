@@ -17,25 +17,6 @@ import pytest
 from core import settings
 
 
-class ProcessZapServer:
-    """
-    Class to run Zap Server in subprocess.
-    """
-
-    @staticmethod
-    def run(file):
-        """
-        Run subprocess main.py
-        :return:
-        """
-        module = os.path.normpath(os.path.join(settings.BASE_DIR, file))
-        subprocess.Popen(['pipenv', 'shell'], cwd=None)
-        subprocess.run(['pipenv', 'run', module, '--no_headless'])
-
-
-ProcessZapServer.run('main.py')
-
-
 @pytest.fixture
 def initialize_client_app():
     """
