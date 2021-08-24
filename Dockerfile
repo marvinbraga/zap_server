@@ -1,4 +1,4 @@
-FROM marvinbraga/zap_server:latest
+FROM marvinbraga/zap_server:base_zap_server-v1
 
 ENV PYTHONUNBUFFERED=1
 ENV PIPENV_VENV_IN_PROJECT=1
@@ -21,4 +21,4 @@ RUN sudo mkdir -p /var/app/server/.temp \
 
 EXPOSE 8777
 
-CMD ["pipenv", "run", "python", "zap_server_app.py"]
+CMD ["pipenv", "run", "python", "main.py", "0.0.0.0", "8777"]

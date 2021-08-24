@@ -1,0 +1,4 @@
+AUTH_KEY=my_auth_key
+EMAIL_PASSWORD=mail_pass
+EMAIL_PORT=587
+URL_MEDIA_GROUPS=https://your_domain/media/images/groups
