@@ -27,7 +27,7 @@ jobs:
 
       - name: Docker-compose up Zap Server
         run: |
-          docker-compose up
+          docker-compose up -d
 
       - name: Lint with Flake8
         run: |
