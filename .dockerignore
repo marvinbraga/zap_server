@@ -1,2 +1,7 @@
+.github/
+.pytest_cache/
 .idea/
+tests/
+
 .env
+.flake8

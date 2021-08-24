@@ -23,6 +23,11 @@ jobs:
           python -m pip install --upgrade pip
           pip install pipenv
           pipenv sync --dev
+          cp contrib/env-sample .env
+
+      - name: Docker-compose up Zap Server
+        run: |
+          docker-compose up -d
 
       - name: Lint with Flake8
         run: |

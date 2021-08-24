@@ -46,7 +46,7 @@ class ZapServerApp:
                         result = f'Echo: {command}'
                     self._con.show(f'Command executed {command}...')
                     client.send(result)
-                    self._con.show(f'Return Value [{result}]...')
+                    self._con.show(f'Output Value [{result}]...')
         except EOFError as e:
             self._con.show(e)
             self._con.show('Connection Closed with Client.')

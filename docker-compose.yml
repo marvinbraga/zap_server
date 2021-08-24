@@ -1,0 +1,17 @@
+version: "3.4"
+
+services:
+  zap_server_app:
+    container_name: zap_server
+    image: marvinbraga/zap_server:latest
+    ports:
+      - 8777:8777
+    environment:
+      - SETTINGS_TYPE=DEV
+      - AUTH_KEY=${AUTH_KEY}
+      - URL_MEDIA_GROUPS=${URL_MEDIA_GROUPS}
+      - EMAIL_PASSWORD=${EMAIL_PASSWORD}
+      - EMAIL_PORT=${EMAIL_PORT}
+    volumes:
+      - ./server/.temp:/var/app/server/.temp:rw
+      - ./media/images/groups:/var/app/media/images/groups:rw
