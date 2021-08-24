@@ -8,8 +8,6 @@ Aug 2021
 
 Test Server Application Module
 """
-import os
-import subprocess
 from multiprocessing.connection import Client
 
 import pytest
