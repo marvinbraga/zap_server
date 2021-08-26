@@ -8,11 +8,13 @@ Aug 2021
 
 Zap Server Application Module
 """
+
 import traceback
 from multiprocessing.connection import Listener
 
-from core.factories.whatsapp import FactoryWhatsappAdapter
 from core.utils.classes import MessageConsole
+from server.factories.whatsapp import FactoryWhatsappAdapter
+from server.managers import ManagerSingleton
 
 
 class ZapServerApp:
@@ -26,7 +28,7 @@ class ZapServerApp:
         self._serv = Listener(address, authkey=authkey)
         self._con.show(f'Zap Server Application: Host [{address[0]}], Port[{address[1]}].')
         self._con.show('Instantiating the Manager...')
-        self._manager = None
+        self._manager = ManagerSingleton().set_adapter(adapter).set_no_headless(no_headless)
         self._con.show('Initialization is Complete...')
 
     def worker(self, client):
