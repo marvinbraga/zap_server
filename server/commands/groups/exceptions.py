@@ -81,13 +81,6 @@ class AllUsersSendMessagesException(WhatsappBaseException):
     _TEXT = 'All Users Send Messages'
 
 
-class ConnectionLostException(WhatsappBaseException):
-    """
-    Exception for lost connection.
-    """
-    _TEXT = 'Lost Connection With Whatsapp'
-
-
 class ExitGroupException(WhatsappBaseException):
     """
     Exception for leaving a group.
@@ -114,27 +107,6 @@ class GroupParticipantCountException(WhatsappBaseException):
     Exception to recover number of group participants.
     """
     _TEXT = 'Number of Group Participants'
-
-
-class GetQrCodeException(WhatsappBaseException):
-    """
-    Exception to retrieve authentication qr-code.
-    """
-    _TEXT = 'Recover QR Code'
-
-
-class CheckPointException(WhatsappBaseException):
-    """
-    Exception for authentication information verification exception.
-    """
-    _TEXT = 'Check Authentication on the Site'
-
-
-class IsConnectedException(WhatsappBaseException):
-    """
-    Exception for connection state check.
-    """
-    _TEXT = 'Check Whatsapp Connection with Server'
 
 
 class TokenIsAlreadyConnected(WhatsappBaseException):

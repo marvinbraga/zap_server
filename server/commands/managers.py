@@ -12,6 +12,7 @@ from server.commands.classes import NoCommand
 from server.commands.groups.classes import GroupCommandsRegister
 from server.commands.managements.classes import ManagerCommandsRegister
 from server.commands.messages.classes import MessageCommandsRegister
+from server.commands.properties.classes import PropertiesCommandsRegister
 
 
 class AvailableCommands:
