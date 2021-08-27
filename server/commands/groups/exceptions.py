@@ -39,27 +39,6 @@ class RenameGroupException(WhatsappBaseException):
     _TEXT = 'Change Group Name'
 
 
-class SendMessageException(WhatsappBaseException):
-    """
-    Exception class for sending a message.
-    """
-    _TEXT = 'Send Message'
-
-
-class SendPictureException(WhatsappBaseException):
-    """
-    Exception class for image submission.
-    """
-    _TEXT = 'Send Picture'
-
-
-class SendDocumentException(WhatsappBaseException):
-    """
-    Exception class for document submission.
-    """
-    _TEXT = 'Send Document'
-
-
 class CreateGroupException(WhatsappBaseException):
     """
     Exception class for creating groups.

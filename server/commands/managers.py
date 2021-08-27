@@ -9,6 +9,8 @@ Aug 2021
 Command Manager Module
 """
 from server.commands.classes import NoCommand
+from server.commands.groups.classes import GroupCommandsRegister
+from server.commands.messages.classes import MessageCommandsRegister
 
 
 class AvailableCommands:
@@ -22,7 +24,11 @@ class AvailableCommands:
         Method for exposing commands.
         :return:
         """
-        return []
+        commands = \
+            GroupCommandsRegister.available_classes + MessageCommandsRegister.available_classes + \
+            ManagerCommandsRegister.available_classes + PropertiesCommandsRegister.available_classes + \
+            PersonsCommandsRegister.available_classes
+        return [{'name': cmd.name, 'class': cmd} for cmd in commands]
 
 
 class CommandManager:
