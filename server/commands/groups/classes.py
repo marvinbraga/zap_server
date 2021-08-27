@@ -339,7 +339,6 @@ class GroupCommandsRegister:
     """
     Register for commands.
     """
-
     available_classes = (
         GroupCreate, GroupGetInviteLink, GroupRename, GroupSetPicture,
         GroupOnlyAdminsSendMessages, GroupAllUsersSendMessages,
