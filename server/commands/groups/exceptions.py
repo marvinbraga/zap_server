@@ -18,13 +18,6 @@ class InitialException(WhatsappBaseException):
     _TEXT = 'Initialization'
 
 
-class QuitException(WhatsappBaseException):
-    """
-    Exception class for exiting the messaging connection.
-    """
-    _TEXT = 'Quit'
-
-
 class GotoMainException(WhatsappBaseException):
     """
     Exception class for the main menu go function.
