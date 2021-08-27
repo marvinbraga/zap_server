@@ -6,7 +6,7 @@ https://github.com/marvinbraga/zap_server
 Marcus Vinicius Braga, marcus@marvinbraga.com.br
 Aug 2021
 
-Zap Server Application Module
+Base Exception Module
 """
 
 
