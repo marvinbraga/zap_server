@@ -9,15 +9,9 @@ Aug 2021
 Adaptee Module
 """
 from server.adapters.bases import AdapteeBase
-
-
-class MockWhatsapp:
-    """
-    TODO: Create This Class.
-    """
-
-    def __init__(self, token):
-        self.token = token
+from server.adapters.categories import MessageAdapterWhatsApp, MockGroupAdapterWhatsApp, PersonAdapterWhatsApp, \
+    ManagerAdapterWhatsApp, PropertiesAdapterWhatsApp, GroupAdapterWhatsApp
+from server.adapters.mocks import MockWhatsapp
 
 
 class WhatsApp:
@@ -43,11 +37,11 @@ class AdapteeMockWhatsapp(AdapteeBase):
         super(AdapteeMockWhatsapp, self).__init__(token, no_headless)
         self._object = MockWhatsapp(token=self._token)
 
-        self._message = None  # MessageAdapterMockApp(self._object)
-        self._group = None  # GroupAdapterMockApp(self._object)
-        self._person = None  # PersonAdapterMockApp(self._object)
-        self._manager = None  # ManagerAdapterMockApp(self._object)
-        self._properties = None  # PropertiesAdapterMockApp(self._object)
+        self._message = MessageAdapterWhatsApp(self._object)
+        self._group = MockGroupAdapterWhatsApp(self._object)
+        self._person = PersonAdapterWhatsApp(self._object)
+        self._manager = ManagerAdapterWhatsApp(self._object)
+        self._properties = PropertiesAdapterWhatsApp(self._object)
 
 
 class AdapteeTheFirstWhatsApp(AdapteeBase):
@@ -62,8 +56,8 @@ class AdapteeTheFirstWhatsApp(AdapteeBase):
         super(AdapteeTheFirstWhatsApp, self).__init__(token, no_headless)
         self._object = WhatsApp(timeout, token=self._token, no_headless=self._no_headless)
 
-        self._message = None  # MessageAdapterTheFirstWhatsApp(self._object)
-        self._group = None  # GroupAdapterTheFirstWhatsApp(self._object)
-        self._person = None  # PersonAdapterTheFirstWhatsApp(self._object)
-        self._manager = None  # ManagerAdapterTheFirstWhatsApp(self._object)
-        self._properties = None  # PropertiesAdapterTheFirstWhatsApp(self._object)
+        self._message = MessageAdapterWhatsApp(self._object)
+        self._group = GroupAdapterWhatsApp(self._object)
+        self._person = PersonAdapterWhatsApp(self._object)
+        self._manager = ManagerAdapterWhatsApp(self._object)
+        self._properties = PropertiesAdapterWhatsApp(self._object)
