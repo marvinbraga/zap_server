@@ -167,10 +167,10 @@ class MockWhatsapp:
 
     def get_last_seen(self, name, timeout=10):
         """
-
-        :param name:
-        :param timeout:
-        :return:
+        Checks the last user check.
+        :param name: Contact's name.
+        :param timeout: Int.
+        :return: Str.
         """
         msg = f'[get_last_seen] name: {name}, timeout: {timeout}'
         self.cs.show(self._token, msg)
@@ -178,9 +178,9 @@ class MockWhatsapp:
 
     def send_blind_message(self, message):
         """
-
-        :param message:
-        :return:
+        Send a blind message.
+        :param message: Text message.
+        :return: Bool.
         """
         msg = f'[send_blind_message] message: {message}'
         self.cs.show(self._token, msg)
@@ -188,11 +188,11 @@ class MockWhatsapp:
 
     def send_picture(self, name, picture_location, caption=None):
         """
-
-        :param name:
-        :param picture_location:
-        :param caption:
-        :return:
+        Send a picture.
+        :param name: Contact or group name.
+        :param picture_location: Picture path.
+        :param caption: Text.
+        :return: Bool.
         """
         if randint(1, 100) % 99 == 0:
             raise SendPictureException()
@@ -202,10 +202,10 @@ class MockWhatsapp:
 
     def send_document(self, name, document_location):
         """
-
-        :param name:
-        :param document_location:
-        :return:
+        Send a document.
+        :param name: Contact or group name.
+        :param document_location: Document path.
+        :return: Bool.
         """
         if randint(1, 100) % 99 == 0:
             raise SendDocumentException()
@@ -215,9 +215,9 @@ class MockWhatsapp:
 
     def clear_chat(self, name):
         """
-
-        :param name:
-        :return:
+        Clears the contact's chat.
+        :param name: Contact's name.
+        :return: Bool.
         """
         msg = f'[clear_chat] name: {name}'
         self.cs.show(self._token, msg)
@@ -271,67 +271,147 @@ class MockWhatsapp:
         return True
 
     def join_group(self, invite_link):
+        """
+        Join a Whatsapp group.
+        :param invite_link: Group link.
+        :return: Bool.
+        """
         msg = f'[join_group] invite_link: {invite_link}'
         self.cs.show(self._token, msg)
         return True
 
     def get_invite_link_for_group(self, group_name):
+        """
+        Retrieve the group link.
+        :param group_name: Group's name.
+        :return: Str.
+        """
         msg = f'[get_invite_link_for_group] group_name: {group_name}'
         self.cs.show(self._token, msg)
-        return 'https://whatsapp.com/link/link_de_inscricao_grupo'
+        return 'https://whatsapp.com/link/group_registration_link'
 
     def only_admins_change_group_data(self, group_name):
+        """
+        Only administrators change group data.
+        :param group_name: Group's name.
+        :return: Bool.
+        """
         msg = f'[only_admins_change_group_data] group_name: {group_name}'
         self.cs.show(self._token, msg)
         return True
 
     def all_users_change_group_data(self, group_name):
+        """
+        All users can change group data.
+        :param group_name: Group's name.
+        :return: Bool.
+        """
         msg = f'[all_users_change_group_data] group_name: {group_name}'
         self.cs.show(self._token, msg)
         return True
 
     def only_admins_send_messages(self, group_name):
+        """
+        Only administrators can send messages.
+        :param group_name: Group's name.
+        :return: Bool.
+        """
         msg = f'[only_admins_send_messages] group_name: {group_name}'
         self.cs.show(self._token, msg)
         return True
 
     def all_users_send_messages(self, group_name):
+        """
+        All users can send messages.
+        :param group_name: Group's name.
+        :return: Bool.
+        """
         msg = f'[all_users_send_messages] group_name: {group_name}'
         self.cs.show(self._token, msg)
         return True
 
     def exit_group(self, group_name):
+        """
+        Leave a group.
+        :param group_name: Group's name.
+        :return: Bool.
+        """
         msg = f'[exit_group] group_name: {group_name}'
         self.cs.show(self._token, msg)
         return True
 
     def send_anon_message(self, phone, text):
+        """
+        Send an anonymous message.
+        :param phone: Phone number.
+        :param text: Text message.
+        :return: Bool.
+        """
         msg = f'[send_anon_message] phone: {phone}, text: {text}'
         self.cs.show(self._token, msg)
         return True
 
-    def is_message_present(self, username, message):
+    @staticmethod
+    def is_message_present(username, message):
+        """
+        Checks if a message is present in the chat.
+        :param username: Contact's name.
+        :param message: Text message.
+        :return: Bool.
+        """
+        _, _ = username, message
         if randint(1, 100) % 2 == 0:
             return True
         else:
             return False
 
-    def get_starred_messages(self, delay=10):
-        starred_messages = ['Mensagens Favoritas 01', 'Mensagens Favoritas 02']
+    @staticmethod
+    def get_starred_messages(delay=10):
+        """
+        Recovers Favorite Messages.
+        :param delay: Int.
+        :return: List.
+        """
+        _ = delay
+        starred_messages = ['Starred Message 01', 'Starred Message 02']
         return starred_messages
 
-    def unread_usernames(self, scrolls=100):
-        usernames = ['Marcus Vinicius Braga', 'Lucas Barros Braga']
+    @staticmethod
+    def unread_usernames(scrolls=100):
+        """
+        Contacts with unread messages.
+        :param scrolls: Int.
+        :return: List.
+        """
+        _ = scrolls
+        usernames = ['User 1', 'User 2']
         usernames = list(set(usernames))
         return usernames
 
-    def get_driver(self):
+    @staticmethod
+    def get_driver():
+        """
+        Recover the browser.
+        :return: Object.
+        """
         return None
 
-    def get_last_message_for(self, name):
+    @staticmethod
+    def get_last_message_for(name):
+        """
+        Retrieves the contact's last message.
+        :param name: Contact's name.
+        :return: List.
+        """
+        _ = name
         messages = list()
         return messages
 
-    def quit(self):
+    @staticmethod
+    def quit():
+        """
+        Closes browser connection.
+        :return: Bool.
+        """
         result = True
         return result
