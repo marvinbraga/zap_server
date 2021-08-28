@@ -151,7 +151,7 @@ class MockWhatsapp:
         """
         if randint(1, 100) % 99 == 0:
             raise GotoMainException()
-        msg = f'[goto_main]'
+        msg = '[goto_main]'
         self.cs.show(self._token, msg)
         return True
 
