@@ -12,6 +12,8 @@ import os
 from abc import ABCMeta, abstractmethod
 from enum import Enum
 
+import requests
+
 from core import settings
 
 
