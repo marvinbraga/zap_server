@@ -1,4 +1,7 @@
 AUTH_KEY=my_auth_key
+SITE_ROOT=yourdomain.com
+EMAIL_HOST=imap.yourhost.com
+EMAIL_HOST_USER=your_email@yourdomain.com
 EMAIL_PASSWORD=mail_pass
 EMAIL_PORT=587
 URL_MEDIA_GROUPS=https://your_domain/media/images/groups
