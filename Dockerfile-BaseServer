@@ -3,4 +3,5 @@ FROM selenium/node-firefox
 RUN sudo apt update -y \
     && sudo apt upgrade -y \
     && sudo apt install -y build-essential libzbar-dev python3-pip \
-    && sudo apt install -y python3.9 python3.9-dev \
+    && sudo apt install -y libzbar0 \
+    && sudo apt install -y python3.8 python3.8-dev \

@@ -21,4 +21,4 @@ RUN sudo mkdir -p /var/app/server/.temp \
 
 EXPOSE 8777
 
-CMD ["pipenv", "run", "python", "main.py", "0.0.0.0", "8777"]
+CMD ["pipenv", "run", "python3", "main.py", "0.0.0.0", "8777"]
