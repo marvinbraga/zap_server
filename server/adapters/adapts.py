@@ -12,17 +12,7 @@ from server.adapters.bases import AdapteeBase
 from server.adapters.categories import MessageAdapterWhatsApp, MockGroupAdapterWhatsApp, PersonAdapterWhatsApp, \
     ManagerAdapterWhatsApp, PropertiesAdapterWhatsApp, GroupAdapterWhatsApp
 from server.adapters.mocks import MockWhatsapp
-
-
-class WhatsApp:
-    """
-    TODO: Create this class.
-    """
-
-    def __init__(self, timeout, token, no_headless):
-        self.timeout = timeout
-        self.token = token
-        self.no_headless = no_headless
+from server.adapters.the_first.classes import WhatsApp
 
 
 class AdapteeMockWhatsapp(AdapteeBase):
