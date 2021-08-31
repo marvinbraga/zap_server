@@ -268,7 +268,6 @@ class WhatsApp:
         :return: String Bool.
         """
         try:
-            message = self.emojify(message)
             self.access_search_panel(name)
             send_msg = self.wait_for_element('send_message')
             is_http = message.find('http') > -1
@@ -526,7 +525,6 @@ class WhatsApp:
         :return: Bool.
         """
         try:
-            message = self.emojify(message)
             send_msg = self.wait_for_element('send_message')
             messages = message.split("\n")
             for msg in messages:
