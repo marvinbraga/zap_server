@@ -23,12 +23,13 @@ def connect_to_server():
     c = Client(('127.0.0.1', 8777), authkey=settings.AUTH_KEY.encode())
     commands = [
         'user_token||SendMessage||Group Name||Message Test by Client.',
-        'user_token||GroupGetInviteLink||Group Name',
-        'user_token||GroupOnlyAdminsChangeGroupData||Group Name',
-        'user_token||GroupAllUsersChangeGroupData||Group Name',
-        'user_token||GroupOnlyAdminsSendMessages||Group Name',
-        'user_token||GroupAllUsersSendMessages||Group Name',
-        'user_token||GroupOnlyAdminsSendMessages||Group Name',
+        # 'user_token||GroupGetInviteLink||Group Name',
+        # 'user_token||GroupOnlyAdminsChangeGroupData||Group Name',
+        # 'user_token||GroupAllUsersChangeGroupData||Group Name',
+        # 'user_token||GroupOnlyAdminsSendMessages||Group Name',
+        # 'user_token||GroupAllUsersSendMessages||Group Name',
+        # 'user_token||GroupOnlyAdminsSendMessages||Group Name',
+        # 'user_token||IsConnected',
     ]
     try:
         for command in commands:

@@ -101,7 +101,8 @@ class ManagerElementsData:
             'group_info':
                 '/html/body/div[1]/div/div/div[4]/div/header/div[3]/div/div[3]/span/div/ul/li[1]/div',
             'group_image_button':
-                '/html/body/div/div[1]/div[1]/div[2]/div[3]/span/div[1]/span/div[1]/div/section/div[1]/div[1]/div/input',
+                '/html/body/div/div[1]/div[1]/div[2]/div[3]/span/div[1]/span/div[1]/div/section/div[1]'
+                '/div[1]/div/input',
             'group_create_image_button':
                 '/html/body/div/div[1]/div[1]/div[2]/div[1]/span/div[1]/span/div[1]/div/div[1]/div/input',
             'group_load_photo':
