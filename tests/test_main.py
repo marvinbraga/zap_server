@@ -46,7 +46,7 @@ def initialize_no_headless_main():
     :return: Object or False
     """
     global main_app
-    result = main_app.start('zap_server_app.py', '--_no_headless') if main_app else False
+    result = main_app.start('zap_server_app.py', '--no_headless') if main_app else False
     return result
 
 

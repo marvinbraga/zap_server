@@ -38,5 +38,6 @@ jobs:
           export PYTHONPATH=src
           pipenv run pytest apps/tests/test_server_app.py --cov=pypro
           pipenv run pytest tests/test_main.py --cov=pypro
+          # pipenv run pytest server/adapters/the_first/tests/test_connections.py --cov=pypro
 
       - run: echo "This job's status is ${{ job.status }}."
