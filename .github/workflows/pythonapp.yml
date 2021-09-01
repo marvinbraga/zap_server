@@ -23,7 +23,6 @@ jobs:
           python -m pip install --upgrade pip
           pip3 install pipenv
           pipenv sync --dev
-          pipenv install pyzbar[scripts]
           cp contrib/env-sample .env
 
       - name: Docker-compose up Zap Server
@@ -37,6 +36,6 @@ jobs:
       - name: Tests with Pytest
         run: |
           export PYTHONPATH=src
-          pipenv run pytest --cov=pypro
+          pipenv run pytest apps/tests/test_server_app.py --cov=pypro
 
       - run: echo "This job's status is ${{ job.status }}."

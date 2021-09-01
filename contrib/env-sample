@@ -5,3 +5,4 @@ EMAIL_HOST_USER=your_email@yourdomain.com
 EMAIL_PASSWORD=mail_pass
 EMAIL_PORT=587
 URL_MEDIA_GROUPS=https://your_domain/media/images/groups
+TEST_CONTACT_GROUP_MEMBER=Your_Contact_Name
