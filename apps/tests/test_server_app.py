@@ -21,7 +21,7 @@ def initialize_client_app():
     Start Instance of client to ZapServer.
     :return: Object or False
     """
-    return Client(('127.0.0.1', 8777), authkey=settings.AUTH_KEY.encode())
+    return Client(('0.0.0.0', 8777), authkey=settings.AUTH_KEY.encode())
 
 
 def test_start_main(initialize_client_app):
