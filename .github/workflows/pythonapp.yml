@@ -23,6 +23,7 @@ jobs:
           python -m pip install --upgrade pip
           pip3 install pipenv
           pipenv sync --dev
+          pipenv install pyzbar[scripts]
           cp contrib/env-sample .env
 
       - name: Docker-compose up Zap Server

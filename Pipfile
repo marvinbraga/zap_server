@@ -17,7 +17,7 @@ selenium = "*"
 pillow = "*"
 beautifulsoup4 = "*"
 webdriver-manager = "*"
-pyzbar = "*"
+pyzbar = {extras = ["scripts"],version = "*"}
 qrcode = "*"
 pickle-mixin = "*"
 python-dotenv = "*"
