@@ -21,6 +21,12 @@ pyzbar = "*"
 qrcode = "*"
 pickle-mixin = "*"
 python-dotenv = "*"
+astroid = "==2.7.3"
+platformdirs = "==2.3.0"
+pluggy = "==1.0.0"
+pytest = "==6.2.5"
+setuptools = "==57.4.0"
+traitlets = "==5.1.0"
 
 [requires]
 python_version = "3.8"
