@@ -60,7 +60,7 @@ class ManagerElementsData:
             'search_edit':
                 '/html/body/div/div/div/div[3]/div/div[1]/div/label/div/div[2]',
             'qr_code':
-                '/html/body/div/div/div/div[2]/div[1]/div/div[2]/div',
+                '/html/body/div/div[1]/div/div[2]/div[1]/div/div[2]/div/canvas',
             'send_message':
                 "/html/body/div[1]/div/div/div[4]/div/footer/div[1]/div[2]/div/div[2]",
             'group':

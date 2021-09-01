@@ -53,9 +53,9 @@ class MainApplication:
         return self
 
     def _is_no_headless(self, args):
-        self.no_headless = '--_no_headless' in args
+        self.no_headless = '--no_headless' in args
         if self.no_headless:
-            self._con.show('--_no_headless')
+            self._con.show('--no_headless')
         return self
 
     def start(self, *args):
