@@ -45,7 +45,7 @@ def test_start_main(initialize_mock_main, initialize_client_app):
     Check Zap Server Initialization.
     :return:
     """
-    s = initialize_mock_main
+    _ = initialize_mock_main
     c = initialize_client_app
     command = 'test_start_main||SendMessage||Contact Name||Initial Test.'
     c.send(command)
