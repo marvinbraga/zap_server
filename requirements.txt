@@ -37,7 +37,7 @@ pylint==2.13.7
 pyparsing==3.0.8
 pytest==7.1.2
 pytest-cov==3.0.0
-python-dotenv==0.19.2
+python-dotenv==0.20.0
 pyzbar==0.1.8
 qrcode==7.3.1
 requests==2.26.0
