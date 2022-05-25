@@ -48,5 +48,5 @@ traitlets==5.2.1.post0
 urllib3==1.26.9
 wcwidth==0.2.5
 webdriver-manager==3.7.0
-wrapt==1.13.3
+wrapt==1.14.1
 zipp==3.6.0
