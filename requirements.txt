@@ -26,7 +26,7 @@ parso==0.8.3
 pickle-mixin==1.0.2
 pickleshare==0.7.5
 Pillow==9.2.0
-platformdirs==2.4.0
+platformdirs==2.5.2
 pluggy==1.0.0
 prompt-toolkit==3.0.22
 py==1.11.0
