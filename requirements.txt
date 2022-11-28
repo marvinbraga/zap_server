@@ -30,7 +30,7 @@ platformdirs==2.5.4
 pluggy==1.0.0
 prompt-toolkit==3.0.33
 py==1.11.0
-pycodestyle==2.8.0
+pycodestyle==2.10.0
 pyflakes==2.4.0
 Pygments==2.10.0
 pylint==2.11.1
