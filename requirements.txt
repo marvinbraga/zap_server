@@ -41,7 +41,7 @@ python-dotenv==0.21.0
 pyzbar==0.1.9
 qrcode==7.3.1
 requests==2.28.1
-selenium==4.0.0
+selenium==4.7.2
 soupsieve==2.3.1
 toml==0.10.2
 traitlets==5.1.1
