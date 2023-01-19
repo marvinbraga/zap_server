@@ -28,7 +28,7 @@ pickleshare==0.7.5
 Pillow==9.4.0
 platformdirs==2.6.2
 pluggy==1.0.0
-prompt-toolkit==3.0.22
+prompt-toolkit==3.0.36
 py==1.11.0
 pycodestyle==2.8.0
 pyflakes==2.4.0
