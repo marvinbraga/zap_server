@@ -49,4 +49,4 @@ urllib3==1.26.14
 wcwidth==0.2.6
 webdriver-manager==3.8.5
 wrapt==1.14.1
-zipp==3.6.0
+zipp==3.14.0
