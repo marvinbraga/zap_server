@@ -36,7 +36,7 @@ Pygments==2.14.0
 pylint==2.16.2
 pyparsing==3.0.9
 pytest==7.2.1
-pytest-cov==3.0.0
+pytest-cov==4.0.0
 python-dotenv==0.19.2
 pyzbar==0.1.8
 qrcode==7.3.1
