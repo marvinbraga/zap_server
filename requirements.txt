@@ -1,5 +1,5 @@
 astroid==2.14.2
-atomicwrites==1.4.0
+atomicwrites==1.4.1
 attrs==21.2.0
 backcall==0.2.0
 beautifulsoup4==4.10.0
