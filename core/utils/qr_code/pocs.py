@@ -193,8 +193,10 @@ if __name__ == '__main__':
     vcard_marcus = VCardQrCode(first_name='Marcus Vinicius', last_name='Braga',
                                photo_url='https://www.gravatar.com/avatar/7ceb2f2eab9b3329a826eb138d602981?s=28&d=mm',
                                phone_mobile='+55 00 0000-0000',
-                               company='marvinbraga.com.br',
-                               email='marcus@marvinbraga.com.br',
-                               website='https://marvinbraga.com.br',
+                               company='pyteam.pro',
+                               email='marcus.braga@pyteam.pro',
+                               website='https://pyteam.pro',
+                               address='https://www.linkedin.com/in/marvinbraga/',
+                               state='https://www.github.com/marvinbraga/',
                                country='Brazil')
     test_qrcode('qr-code-marcus-marvinbraga.png', vcard_marcus)
