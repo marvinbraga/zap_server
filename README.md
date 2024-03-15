@@ -127,6 +127,36 @@ if __name__ == '__main__':
     t.join()
 ```
 
+## Modifying WhatsApp Elements
+
+The `server/adapters/the_first/elements/data.py` file contains a dictionary that maps WhatsApp elements to their respective XPath paths or CSS selectors.
+These elements are used to interact with the WhatsApp interface through an automation tool like Selenium.
+
+If there are changes to the HTML structure of WhatsApp that affect the element paths, you'll need to update the
+dictionary in the `data.py` file to reflect those changes. Here are the steps to modify the elements:
+
+1. **Identify the element:** Determine which WhatsApp element needs to be updated. The elements are mapped to specific
+   keys in the dictionary, such as `search_edit`, `qr_code`, `send_message`, etc.
+
+2. **Inspect the element:** Using the browser's developer tools, inspect the corresponding element on the WhatsApp page.
+   Locate the updated XPath path or CSS selector for that element.
+
+3. **Update the dictionary:** In the `data.py` file, find the key corresponding to the element you want to update.
+   Replace the value associated with that key with the new XPath path or CSS selector you obtained in the previous step.
+
+4. **Test the changes:** After updating the dictionary, run the code that uses those elements to ensure that the changes
+   work correctly. Verify that the interaction with WhatsApp occurs as expected.
+
+5. **Save and commit the changes:** Once you have tested and verified that the changes are working, save the `data.py`
+   file and commit the changes to the repository.
+
+Keep in mind that any changes to the WhatsApp elements may affect the functionality of the code that interacts with
+those elements. Therefore, it's important to exercise caution when making changes and thoroughly test them before
+deploying to a production environment.
+
+If you have any questions or need assistance with updating the WhatsApp elements, feel free to open an issue in the
+project repository.
+
 ## Contributing to the GitHub Project
 
 **Welcome!** We appreciate your interest in contributing to our project on GitHub. Your participation is essential for
