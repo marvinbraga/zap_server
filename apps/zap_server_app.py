@@ -12,6 +12,7 @@ Zap Server Application Module
 import traceback
 from multiprocessing.connection import Listener
 
+from apps.names import Colossal
 from core.utils.classes import MessageConsole
 from server.factories.whatsapp import FactoryWhatsappAdapter
 from server.managers import ManagerSingleton
@@ -23,6 +24,7 @@ class ZapServerApp:
     """
 
     def __init__(self, address, authkey, adapter=FactoryWhatsappAdapter.DEFAULT, no_headless=False):
+        Colossal.show()
         self._con = MessageConsole()
         self._con.show('Authorizing...')
         self._serv = Listener(address, authkey=authkey)

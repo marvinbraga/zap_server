@@ -12,9 +12,9 @@ Settings Server Module
 import os
 import platform
 
-from dotenv import load_dotenv
+from dotenv import load_dotenv, find_dotenv
 
-load_dotenv()
+load_dotenv(find_dotenv())
 BASE_DIR = os.path.normpath(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 AUTH_KEY = os.environ.get('AUTH_KEY')
 

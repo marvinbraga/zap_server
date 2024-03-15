@@ -1,8 +1,8 @@
-AUTH_KEY=my_auth_key
+AUTH_KEY=7de5b6a7-072b-4476-aed5-7bb54b423bb4
 SITE_ROOT=yourdomain.com
 EMAIL_HOST=imap.yourhost.com
 EMAIL_HOST_USER=your_email@yourdomain.com
 EMAIL_PASSWORD=mail_pass
 EMAIL_PORT=587
-URL_MEDIA_GROUPS=https://your_domain/media/images/groups
-TEST_CONTACT_GROUP_MEMBER=Your_Contact_Name
+URL_MEDIA_GROUPS=http://localhost:5000/media/images/groups
+TEST_CONTACT_GROUP_MEMBER="Your Name"
