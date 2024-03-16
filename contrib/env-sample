@@ -6,3 +6,5 @@ EMAIL_PASSWORD=mail_pass
 EMAIL_PORT=587
 URL_MEDIA_GROUPS=http://localhost:5000/media/images/groups
 TEST_CONTACT_GROUP_MEMBER="Your Name"
+GROUP_NAME="Your Group Name"
+NEW_GROUP_NAME="Your New Group Name"
