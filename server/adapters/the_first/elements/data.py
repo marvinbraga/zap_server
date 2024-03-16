@@ -13,6 +13,7 @@ import os
 import pickle
 
 from core import settings
+from server.adapters.the_first.elements.classes import *
 
 
 class ManagerElementsData:
@@ -57,124 +58,62 @@ class ManagerElementsData:
         :return: Dict.
         """
         return {
-            'search_edit':
-                '/html/body/div/div/div/div[3]/div/div[1]/div/label/div/div[2]',
-            'qr_code':
-                '/html/body/div/div[1]/div/div[2]/div[1]/div/div[2]/div/canvas',
-            'send_message':
-                "/html/body/div[1]/div/div/div[4]/div/footer/div[1]/div[2]/div/div[2]",
-            'group':
-                "/html/body/div/div/div/div[3]/header/div[1]/div/span/img",
-            'group_menu_button':
-                "/html/body/div[1]/div/div/div[3]/div/header/div[2]/div/span/div[3]/div",
-            'group_edit_button':
-                '/html/body/div/div/div/div[2]/div[3]/span/div/span/div/div/section/div[1]/div[2]/div[1]/span[2]/div',
-            'group_name_edit':
-                '/html/body/div/div/div/div[2]/div[3]/span/div/span/div/div/section/div[1]/div[2]/div[1]/div/div[2]',
-            'group_close_panel_btn':
-                '//*[@id="app"]/div/div/div[2]/div[3]/span/div/span/div/header/div/div[1]/button',
-            'participants_selector':
-                "div._2LSbZ:nth-child(5) > div:nth-child(1) > div:nth-child(1) > "
-                "div:nth-child(1) > div:nth-child(1) > span:nth-child(1)",
-            'group_more':
-                '//*[@id="side"]/header/div[2]/div/span/div[3]/div/span',
-            'new_group_button':
-                '//*[@id="side"]/header/div[2]/div/span/div[3]/span/div/ul/li[1]/div',
-            'group_contact_name':
-                '//*[@id="app"]/div/div/div[2]/div[1]/span/div/span/div/div/div[1]/div/div/input',
-            'create_group_next_step':
-                '//*[@id="app"]/div/div/div[2]/div[1]/span/div/span/div/div/span/div/span',
-            'create_group_edit':
-                '//*[@id="app"]/div/div/div[2]/div[1]/span/div/span/div/div/div[2]/div/div[2]/div/div[2]',
-            'main_menu':
-                "#main > header > div._1WBXd > div._2EbF- > div > span",
-            'chat_menu':
-                "/html/body/div[1]/div/div/div[4]/div/header/div[3]/div/div[3]/div/span",
-            'group_menu':
-                "/html/body/div[1]/div/div/div[4]/div/header/div[3]/div/div[2]/div",
-            'group_data_button':
-                '/html/body/div/div[1]/span[4]/div/ul/div/div/li[1]',
-            'group_link_button':
-                '/html/body/div/div[1]/div[1]/div[2]/div[3]/span/div[1]/span/div[1]/div/section/div[5]/div[3]',
-            'group_invite_link_anchor':
-                '/html/body/div/div/div/div[2]/div[3]/span/div/span/div/div/div[1]/div[2]/div[2]/div/span',
-            'group_info':
-                '/html/body/div[1]/div/div/div[4]/div/header/div[3]/div/div[3]/span/div/ul/li[1]/div',
-            'group_image_button':
-                '/html/body/div/div[1]/div[1]/div[2]/div[3]/span/div[1]/span/div[1]/div/section/div[1]'
-                '/div[1]/div/input',
-            'group_create_image_button':
-                '/html/body/div/div[1]/div[1]/div[2]/div[1]/span/div[1]/span/div[1]/div/div[1]/div/input',
-            'group_load_photo':
-                '#app > div > span:nth-child(4) > div > ul > li:nth-child(2) > div',
-            'group_image_input':
-                '/html/body/div[1]/div/div/div[2]/div[3]/span/div/span/div/div/div[1]/div[1]/div[1]/div/input',
-            'group_zoom_out':
-                '/html/body/div[1]/div/span[2]/div/div/div/div/div/div/span/div/div/div[1]/div[1]/div[2]',
-            'group_image_save_button':
-                '/html/body/div[1]/div/span[2]/div/div/div/div/div/div/span/div/div/div[2]/span/div/div/span',
-            'group_exit_info':
-                '/html/body/div/div[1]/div[1]/div[2]/div[3]/span/div[1]/span/div[1]/header/div/div[1]/button',
-            'group_join_chat':
-                "#action-button",
-            'group_join':
-                '//*[@id="app"]/div/span[3]/div/div/div/div/div/div/div[2]/div[2]',
-            'group_leave':
-                '//*[@id="main"]/header/div[3]/div/div[3]/span/div/ul/li[5]/div',
-            'group_leave_button':
-                '//*[@id="app"]/div/span[2]/div/div/div/div/div/div/div[2]/div[2]',
-            'group_settings':
-                '/html/body/div/div[1]/div[1]/div[2]/div[3]/span/div[1]/span/div[1]/div/section/div[4]/div[4]',
-            'group_settings_send_messages':
-                '/html/body/div/div[1]/div[1]/div[2]/div[3]/span/div[1]/span/div[1]/div/div[3]/div',
-            'group_settings_send_messages_all_participants':
-                '/html/body/div/div[1]/span[2]/div[1]/div/div/div/div/div/div[2]/form/ol/li[1]/label',
-            'group_settings_send_messages_only_admins':
-                '/html/body/div/div[1]/span[2]/div[1]/div/div/div/div/div/div[2]/form/ol/li[2]/label',
-            'group_settings_send_messages_confirm_button':
-                '/html/body/div/div[1]/span[2]/div[1]/div/div/div/div/div/div[3]/div[2]',
-            'group_settings_edit_group_data':
-                '/html/body/div/div[1]/div[1]/div[2]/div[3]/span/div[1]/span/div[1]/div/div[1]/div',
-            'group_settings_edit_group_data_only_admins':
-                '/html/body/div/div[1]/span[2]/div[1]/div/div/div/div/div/div[2]/form/ol/li[2]/label',
-            'group_settings_edit_group_data_confirm_button':
-                '/html/body/div/div[1]/span[2]/div[1]/div/div/div/div/div/div[3]/div[2]',
-            'group_settings_exit_button':
-                '/html/body/div/div[1]/div[1]/div[2]/div[3]/span/div[1]/span/div[1]/header/div/div[1]/button',
-            'scroll_bar':
-                "#app > div > div > div.MZIyP > div._3q4NP._2yeJ5 > span > div > span > div > div",
-            'participant_1':
-                '_3TEwt',
-            'participant_2':
-                '_25Ooe',
-            'participant_3':
-                '_1wjpf',
-            'status_css_selector':
-                ".drawer-section-body > div:nth-child(1) > div:nth-child(1) > div:nth-child(1) > " +
-                "span:nth-child(1) > span:nth-child(1)",
-            'last_seen':
-                '._315-i',
-            'attach':
-                '/html/body/div/div[1]/div[1]/div[4]/div[1]/footer/div[1]/div[1]/div[2]/div/div',
-            'send_file':
-                '/html/body/div[1]/div/div/div[2]/div[2]/span/div/span/div/div/div[2]/span/div/div/span',
-            'picture_attach_type':
-                '/html/body/div/div[1]/div[1]/div[4]/div[1]/footer/div[1]/div[1]/div[2]/div/span/div[1]/div/ul/li[1]'
-                '/button/input',
-            'document_attach_type':
-                '/html/body/div/div[1]/div[1]/div[4]/div[1]/footer/div[1]/div[1]/div[2]/div/span/div[1]/div/ul/li[3]'
-                '/button/input',
-            'send_document_attach_button':
-                '//*[@id="app"]/div/div/div[2]/div[2]/span/div/span/div/div/div[2]/span/div',
-            'picture_caption':
-                "/html/body/div[1]/div/div/div[2]/div[2]/span/div/span/div/div/div[2]/div/span/div" +
-                "/div[2]/div/div[3]/div[1]/div[2]",
-            'clear_chat':
-                '//*[@id="app"]/div/span[2]/div/div/div/div/div/div/div[2]/div[2]',
-            'open_profile':
-                "/html/body/div[1]/div/div/div[3]/div/header/div[1]/div/img",
-            'open_profile_picture':
-                "/html/body/div[1]/div/div/div[1]/div[3]/span/div/span/div/div/div/div[1]/div[1]/div/img",
-            'profile_image':
-                '//*[@id="app"]/div/span[2]/div/div/div[2]/div/div/div/div/img',
+            'search_edit': SearchEdit().path,
+            'search_edit_clear_button': SearchClearButton().path,
+            'qr_code': QRCode().path,
+            'send_message': SendMessage().path,
+            'group': Group().path,
+            'group_menu_button': GroupMenuButton().path,
+            'group_edit_button': GroupEditButton().path,
+            'group_name_edit': GroupNameEdit().path,
+            'group_close_panel_btn': GroupClosePanelButton().path,
+            'participants_selector': ParticipantsSelector().path,
+            'group_more': GroupMore().path,
+            'new_group_button': NewGroupButton().path,
+            'group_contact_name': GroupContactName().path,
+            'create_group_next_step': CreateGroupNextStep().path,
+            'create_group_edit': CreateGroupEdit().path,
+            'main_menu': MainMenu().path,
+            'chat_menu': ChatMenu().path,
+            'group_menu': GroupMenu().path,
+            'group_data_button': GroupDataButton().path,
+            'group_link_button': GroupLinkButton().path,
+            'group_invite_link_anchor': GroupInviteLinkAnchor().path,
+            'group_info': GroupInfo().path,
+            'group_image_button': GroupImageButton().path,
+            'group_create_image_button': GroupCreateImageButton().path,
+            'group_load_photo': GroupLoadPhoto().path,
+            'group_image_input': GroupImageInput().path,
+            'group_zoom_out': GroupZoomOut().path,
+            'group_image_save_button': GroupImageSaveButton().path,
+            'group_exit_info': GroupExitInfo().path,
+            'group_join_chat': GroupJoinChat().path,
+            'group_join': GroupJoin().path,
+            'group_leave': GroupLeave().path,
+            'group_leave_button': GroupLeaveButton().path,
+            'group_settings': GroupSettings().path,
+            'group_settings_send_messages': GroupSettingsSendMessages().path,
+            'group_settings_send_messages_all_participants': GroupSettingsSendMessagesAllParticipants().path,
+            'group_settings_send_messages_only_admins': GroupSettingsSendMessagesOnlyAdmins().path,
+            'group_settings_send_messages_confirm_button': GroupSettingsSendMessagesConfirmButton().path,
+            'group_settings_edit_group_data': GroupSettingsEditGroupData().path,
+            'group_settings_edit_group_data_only_admins': GroupSettingsEditGroupDataOnlyAdmins().path,
+            'group_settings_edit_group_data_confirm_button': GroupSettingsEditGroupDataConfirmButton().path,
+            'group_settings_exit_button': GroupSettingsExitButton().path,
+            'scroll_bar': ScrollBar().path,
+            'participant_1': Participant1().path,
+            'participant_2': Participant2().path,
+            'participant_3': Participant3().path,
+            'status_css_selector': StatusCssSelector().path,
+            'last_seen': LastSeen().path,
+            'attach': Attach().path,
+            'send_file': SendFile().path,
+            'picture_attach_type': PictureAttachType().path,
+            'document_attach_type': DocumentAttachType().path,
+            'send_document_attach_button': SendDocumentAttachButton().path,
+            'picture_caption': PictureCaption().path,
+            'clear_chat': ClearChat().path,
+            'open_profile': OpenProfile().path,
+            'open_profile_picture': OpenProfilePicture().path,
+            'profile_image': ProfileImage().path,
         }

@@ -9,8 +9,10 @@ Aug 2021
 Zap Server Application Module
 """
 
+import signal
 import traceback
 from multiprocessing.connection import Listener
+from threading import Thread
 
 from apps.names import Colossal
 from core.utils.classes import MessageConsole
@@ -32,6 +34,18 @@ class ZapServerApp:
         self._con.show('Instantiating the Manager...')
         self._manager = ManagerSingleton().set_adapter(adapter).set_no_headless(no_headless)
         self._con.show('Initialization is Complete...')
+        self._worker_thread = None
+        self._running = True
+
+        signal.signal(signal.SIGINT, self._signal_handler)
+
+    def _signal_handler(self, signum, frame):
+        self._con.show('Received SIGINT. Stopping the worker thread...')
+        self._running = False
+        if self._worker_thread and self._worker_thread.is_alive():
+            self._worker_thread.join()
+        self._con.show('Worker thread stopped. Exiting...')
+        exit(0)
 
     def worker(self, client):
         """
@@ -40,7 +54,7 @@ class ZapServerApp:
         :return:
         """
         try:
-            while True:
+            while self._running:
                 command = client.recv()
                 if command:
                     self._con.show(f'Executing command: {command}...')
@@ -60,12 +74,13 @@ class ZapServerApp:
         Start workers and wait client connections.
         :return: None
         """
-        while True:
+        while self._running:
             try:
                 self._con.show('Waiting for client connection.')
                 client = self._serv.accept()
                 self._con.show(f'Connected by{client}.')
-                self.worker(client)
+                self._worker_thread = Thread(target=self.worker, args=(client,))
+                self._worker_thread.start()
             except Exception as e:
                 self._con.show(e)
                 traceback.print_exc()

@@ -21,8 +21,8 @@ from urllib.parse import urlencode
 
 from PIL import Image
 from bs4 import BeautifulSoup
-
-from selenium.common.exceptions import NoSuchElementException, ElementNotVisibleException
+from selenium.common.exceptions import NoSuchElementException, ElementNotVisibleException, \
+    ElementClickInterceptedException
 from selenium.common.exceptions import TimeoutException
 from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.common.alert import Alert
@@ -30,6 +30,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support import expected_conditions as exp_cond
 from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
 
 from core.utils.browsers.classes import BrowserType
 from core.utils.browsers.local_storage import LocalStorage
@@ -39,9 +40,13 @@ from server.adapters.the_first.elements.drivers import DriveElements
 from server.adapters.the_first.exceptions import WhatsappElementChanged
 from server.commands.groups.exceptions import InitialException, RenameGroupException, GotoMainException, \
     CreateGroupException, SetGroupPictureException, GetInviteLinkForGroupException, \
-    OnlyAdminsChangeGroupDataException, OnlyAdminsSendMessagesException, AllUsersSendMessagesException
+    OnlyAdminsChangeGroupDataException, OnlyAdminsSendMessagesException, AllUsersSendMessagesException, \
+    GroupParticipantCountException
 from server.commands.messages.exceptions import SendMessageException, SendDocumentException
 from server.commands.properties.exceptions import ConnectionLostException
+from core.logs import logging
+
+logger = logging.getLogger(__name__)
 
 
 class WhatsApp:
@@ -51,15 +56,18 @@ class WhatsApp:
     _TIMEOUT_EXCEPTION_TEXT = 'Your request has been timed out. Please, try overriding timeout.'
 
     def __init__(self, wait: int, token=None, session=None, no_headless=False):
+        logger.debug("Initializing WhatsApp")
         self._no_headless = no_headless
         self._token = token
+        self._free_for_use = True
         self.session = session
         self.emoji = {}
         self.timeout = wait
-        self._free_for_use = True
         self.driver = None
         self.browser = None
         self.search_elements = None
+        self.actions = None
+        logger.debug("WhatsApp Initialized")
 
     def __del__(self):
         if self.driver:
@@ -81,6 +89,7 @@ class WhatsApp:
         Save Browser Local Storage.
         :return: Self.
         """
+
         def execute(browser, token):
             """
             Thread Execute Method.
@@ -112,9 +121,11 @@ class WhatsApp:
         :param screenshot: To Save a Browser Screenshot.
         :return: Bool.
         """
+        logger.debug("Starting Firefox Browser")
         try:
             self.driver = BrowserType.FIREFOX.new_instance(token=self._token, no_headless=self._no_headless)
             self.browser = self.driver.browser
+            self.actions = ActionChains(self.browser)
             self.search_elements = DriveElements(self.browser)
             self.browser.set_window_size(1600, 1200)
             self.browser.get("https://web.whatsapp.com/")
@@ -124,6 +135,8 @@ class WhatsApp:
 
         if screenshot:
             self.browser.save_screenshot(screenshot)
+
+        logger.debug("Firefox Browser Started")
         return True
 
     def get_element(self, element_name):
@@ -132,6 +145,7 @@ class WhatsApp:
         :param element_name: String with the element name identification.
         :return: Selenium Element.
         """
+        logger.debug(f"WhatsApp Object: {self.search_elements}")
         try:
             result = self.search_elements.get_element(element_name=element_name)
         except NoSuchElementException:
@@ -273,12 +287,13 @@ class WhatsApp:
             is_http = message.find('http') > -1
 
             messages = message.split("\n")
+            send_msg.click()
             for msg in messages:
-                send_msg.send_keys(msg)
-                send_msg.send_keys(Keys.SHIFT + Keys.ENTER)
+                self.actions.send_keys(msg).perform()
+                self.actions.send_keys(Keys.SHIFT + Keys.ENTER).perform()
             if is_http:
                 SleepRandom(end_number=3.0, start_number=2.0).execute()
-            send_msg.send_keys(Keys.ENTER)
+            self.actions.send_keys(Keys.ENTER).perform()
             SleepRandom(end_number=2.1, start_number=1.2).execute()
         except Exception as e:
             print(e)
@@ -292,8 +307,12 @@ class WhatsApp:
         :return: Self.
         """
         search = self.get_element('search_edit')
-        search.clear()
-        search.send_keys(search_name + Keys.ENTER)
+        search.click()
+        self.actions.send_keys(" ").perform()
+        self.actions.key_down(Keys.LEFT_CONTROL).key_down(Keys.SHIFT).send_keys(Keys.HOME).key_up(Keys.CONTROL).key_up(
+            Keys.SHIFT).send_keys(Keys.BACK_SPACE).perform()
+        SleepRandom(end_number=1.1, start_number=0.7).execute()
+        self.actions.send_keys(search_name + Keys.ENTER).perform()
         SleepRandom(end_number=2.1, start_number=1.1).execute()
         return self
 
@@ -334,111 +353,89 @@ class WhatsApp:
         """
         try:
             self.access_search_panel(old_name)
-            self.get_element('group_menu').click()
-            SleepRandom(0.9).execute()
-            data_button = self.wait_for_element('group_data_button')
-            data_button.click()
-            SleepRandom(0.9).execute()
+            self.access_group_panel()
             rename_button = self.get_element('group_edit_button')
             rename_button.click()
             SleepRandom(0.7).execute()
-            group_name_text = self.get_element('group_name_edit')
-            group_name_text.clear()
-            group_name_text.send_keys(new_name + Keys.ENTER)
+            self.actions.send_keys(Keys.HOME).perform()
+            sleep(0.7)
+            self.actions.key_down(Keys.LEFT_CONTROL).send_keys("a").key_up(Keys.CONTROL).send_keys(
+                Keys.BACK_SPACE).perform()
+            sleep(0.7)
+            self.actions.send_keys(Keys.HOME).perform()
+            sleep(0.7)
+            self.actions.send_keys(new_name + Keys.ENTER).perform()
             self.close_group_panel()
         except Exception as e:
             print(e)
             raise RenameGroupException()
         return True
 
-    def participants_count_for_group(self, group_name):
+    def participants_count_for_group(self, group_name) -> int:
         """
         Count the number of participants for the group name provided.
-        TODO: Adjust this method.
         :param group_name: Group Name.
         :return: Int.
         """
-        if self.access_search_panel(group_name).access_group_panel() is None:
-            return 0
-        current_time = dt.datetime.now()
-        participants_selector = self.search_elements.get_element_path('participants_selector')
-        while True:
-            try:
-                participants_count = self.browser.find_element_by_css_selector(participants_selector).text
-                if 'participants' in participants_count:
-                    return participants_count
-            except Exception as e:
-                print(e)
-            new_time = dt.datetime.now()
-            elapsed_time = (new_time - current_time).seconds
-            if elapsed_time > self.timeout:
-                return 0
+        try:
+            self.access_search_panel(group_name)
+            self.access_group_panel()
+            count_label = self.get_element('participants_selector')
+            SleepRandom(end_number=2.1, start_number=1.1).execute()
+            values = count_label.text.split(" ")
+            result = int(values[-1])
+            self.close_group_panel()
+        except Exception as e:
+            print(e)
+            raise GroupParticipantCountException()
+        return result
 
     def get_group_participants(self, group_name):
         """
         Get participants for the group name provided.
-        TODO: Adjust this method.
         :param group_name: Group Name.
         :return: List.
         """
-        self.participants_count_for_group(group_name)
-        if self.access_search_panel(group_name) is None:
-            return []
+        self.access_search_panel(group_name)
+        self.access_group_panel()
         try:
-            click_menu = self.wait_for_element('main_menu')
-            click_menu.click()
+            button_all_participants = WebDriverWait(self.driver.browser, 10).until(
+                EC.element_to_be_clickable((
+                    By.XPATH,
+                    "/html/body/div[1]/div/div[2]/div[5]/span/div/span/div/div/div/"
+                    "section/div[6]/div[2]/div[2]/div[2]"
+                ))
+            )
+            self.driver.browser.execute_script("arguments[0].scrollIntoView(true);", button_all_participants)
+            button_all_participants.click()
+        except ElementClickInterceptedException:
+            print("Tentando clicar via JavaScript.")
+            self.driver.browser.execute_script("arguments[0].click();", button_all_participants)
         except TimeoutException:
-            raise TimeoutError(self._TIMEOUT_EXCEPTION_TEXT)
-        except NoSuchElementException:
+            print("O botão de todos os participantes não ficou clicável após 10 segundos.")
             return []
-        except Exception as e:
-            print(e)
+
+        try:
+            list_elements = WebDriverWait(self.driver.browser, 10).until(
+                EC.visibility_of_all_elements_located((
+                    By.CSS_SELECTOR,
+                    "span.ggj6brxn.gfz4du6o.r7fjleex.g0rxnol2.lhj4utae.le5p0ye3.l7jjieqr._11JPr"
+                ))
+            )
+        except TimeoutException:
+            print("Os elementos dos participantes não ficaram visíveis após 10 segundos.")
             return []
-        sleep_random = SleepRandom(1.1)
-        sleep_random.execute()
 
-        participants = []
-        scrollbar = self.get_element('scroll_bar')
-        for v in range(1, 70):
-            print(v)
-            self.browser.execute_script('arguments[0].scrollTop = ' + str(v * 300), scrollbar)
-            sleep(0.10)
-            elements = self.browser.find_elements_by_tag_name("span")
-            for element in elements:
-                try:
-                    html = element.get_attribute('innerHTML')
-                    soup = BeautifulSoup(html, "html.parser")
-                    class_participant_1 = self.search_elements.get_element_path('participant_1')
-                    for i in soup.find_all("span", class_=class_participant_1):  # '_3TEwt'
-                        if i.text not in participants:
-                            participants.append(i.text)
-                            print(i.text)
-                except Exception as e:
-                    print(e)
-                    pass
-            elements = self.browser.find_elements_by_tag_name("div")
-            for element in elements:
-                try:
-                    html = element.get_attribute('innerHTML')
-                    soup = BeautifulSoup(html, "html.parser")
-                    class_participant_2 = self.search_elements.get_element_path('participant_2')
-                    class_participant_3 = self.search_elements.get_element_path('participant_3')
-                    for i in soup.find_all("div", class_=class_participant_2):  # "_25Ooe"
-                        j = i.find("span", class_=class_participant_3)  # "_1wjpf"
-                        if j:
-                            j = j.text
-                            if "\n" in j:
-                                j = j.split("\n")
-                                j = j[0]
-                                j = j.strip()
-                                if j not in participants:
-                                    participants.append(j)
-                                    print(j)
-                except Exception as e:
-                    print(e)
-
-        sleep_random.execute()
-        return participants
+        result = [element.text for element in list_elements]
+        sleep(1)
+        button_close = self.driver.browser.find_element(
+            by=By.XPATH,
+            value="/html/body/div[1]/div/span[2]/div/span/div/div/div/div/div/div/header/div/div[1]/div"
+        )
+        button_close.click()
+        sleep(1)
+        self.close_group_panel()
+        return result
 
     def goto_main(self):
         """
