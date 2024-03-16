@@ -36,12 +36,11 @@ class MainApplication:
         self._con.show('Verifying args...')
         if len(args) <= 2:
             pass
-        elif len(args) != 3:
+        else:
+            self.host, self.port = args[1], int(args[2])
+        if len(args) != 3 and not ('--mock' in args or '--no-headless' in args):
             self._con.show('To start the Zap Server use command: zap_server_app.py <host> <port>', file=sys.stderr)
             raise SystemExit(1)
-        else:
-            self.host = args[1]
-            self.port = int(args[2])
         return self
 
     def _is_mock_args(self, args):
@@ -53,9 +52,9 @@ class MainApplication:
         return self
 
     def _is_no_headless(self, args):
-        self.no_headless = '--no_headless' in args
+        self.no_headless = '--no-headless' in args
         if self.no_headless:
-            self._con.show('--no_headless')
+            self._con.show('--no-headless')
         return self
 
     def start(self, *args):

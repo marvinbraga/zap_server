@@ -175,7 +175,7 @@ class ElementByXPath(AbstractElementByScope):
         Retrieves the element via XPath.
         :return: Selenium Element.
         """
-        return self._driver.find_element_by_xpath(self._element.path)
+        return self._driver.find_element(by=By.XPATH, value=self._element.path)
 
 
 class ElementByCss(AbstractElementByScope):
@@ -188,7 +188,7 @@ class ElementByCss(AbstractElementByScope):
         Retrieves the element via CSS.
         :return: Selenium Element.
         """
-        return self._driver.find_element_by_css_selector(self._element.path)
+        return self._driver.find_element(by=By.CSS_SELECTOR, value=self._element.path)
 
 
 class ElementByClassName(AbstractElementByScope):
@@ -201,7 +201,7 @@ class ElementByClassName(AbstractElementByScope):
         Retrieves the element by class_name.
         :return: Selenium Element.
         """
-        return self._driver.find_element_by_class_name(self._element.path)
+        return self._driver.find_element(by=By.CLASS_NAME, value=self._element.path)
 
 
 @unique

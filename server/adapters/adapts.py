@@ -13,6 +13,9 @@ from server.adapters.categories import MessageAdapterWhatsApp, MockGroupAdapterW
     ManagerAdapterWhatsApp, PropertiesAdapterWhatsApp, GroupAdapterWhatsApp
 from server.adapters.mocks import MockWhatsapp
 from server.adapters.the_first.classes import WhatsApp
+from core.logs import logging
+
+logger = logging.getLogger(__name__)
 
 
 class AdapteeMockWhatsapp(AdapteeBase):
@@ -24,7 +27,7 @@ class AdapteeMockWhatsapp(AdapteeBase):
         """
         Number of seconds to timeout, default 5 days Use the manager's override_timeout function to change this value.
         """
-        super(AdapteeMockWhatsapp, self).__init__(token, no_headless)
+        super().__init__(token, no_headless)
         self._object = MockWhatsapp(token=self._token)
 
         self._message = MessageAdapterWhatsApp(self._object)
@@ -43,7 +46,8 @@ class AdapteeTheFirstWhatsApp(AdapteeBase):
         """
         Number of seconds to timeout, default 5 days Use the manager's override_timeout function to change this value.
         """
-        super(AdapteeTheFirstWhatsApp, self).__init__(token, no_headless)
+        super().__init__(token, no_headless)
+        logger.debug("Initializing AdapteeTheFirstWhatsApp")
         self._object = WhatsApp(timeout, token=self._token, no_headless=self._no_headless)
 
         self._message = MessageAdapterWhatsApp(self._object)
@@ -51,3 +55,5 @@ class AdapteeTheFirstWhatsApp(AdapteeBase):
         self._person = PersonAdapterWhatsApp(self._object)
         self._manager = ManagerAdapterWhatsApp(self._object)
         self._properties = PropertiesAdapterWhatsApp(self._object)
+        logger.debug(f"WhatsApp instance: {self._object}")
+        logger.debug("AdapteeTheFirstWhatsApp Initialized")

@@ -18,8 +18,10 @@ from selenium.webdriver import DesiredCapabilities
 from selenium.webdriver.chrome.options import Options as ChromeOptions
 from selenium.webdriver.firefox.options import Options as FirefoxOptions
 
-from core import settings
-from core.settings import BASE_DIR
+from core.settings import BASE_DIR, CHROME_WEB_DRIVER, FIREFOX_WEB_DRIVER
+from core.logs import logging
+
+logger = logging.getLogger(__name__)
 
 
 class BrowserType(Enum):
@@ -114,7 +116,7 @@ class ChromeBrowser(BaseBrowser):
                 self._options.add_argument("--disable-extensions")
                 self._options.add_experimental_option("excludeSwitches", ["ignore-certificate-errors"])
 
-                self._browser = webdriver.Chrome(settings.CHROME_WEB_DRIVER, options=self._options)
+                self._browser = webdriver.Chrome(CHROME_WEB_DRIVER, options=self._options)
                 self._browser.delete_all_cookies()
             except Exception as e:
                 print(str(e))
@@ -129,6 +131,7 @@ class FirefoxBrowser(BaseBrowser):
     """
 
     def __init__(self, token=None, session=None, save_cookies=False, no_headless=False):
+        logger.debug("Initializing Firefox")
         super().__init__(token=token, session=session, save_cookies=save_cookies, no_headless=no_headless)
         self._options = FirefoxOptions()
         if not self._no_headless:
@@ -141,11 +144,16 @@ class FirefoxBrowser(BaseBrowser):
                 self._options.add_argument('--no-sandbox')
                 firefox_capabilities = DesiredCapabilities.FIREFOX
                 firefox_capabilities['marionette'] = True
-                firefox_capabilities['binary'] = settings.FIREFOX_WEB_DRIVER
-                self._browser = webdriver.Firefox(capabilities=firefox_capabilities,
-                                                  options=self._options)
+                firefox_capabilities['binary'] = FIREFOX_WEB_DRIVER
+                self._browser = webdriver.Firefox(
+                    # capabilities=firefox_capabilities,
+                    options=self._options
+                )
             except Exception as e:
                 print('Initialization error: ', e)
                 from webdriver_manager.firefox import GeckoDriverManager
-                self._browser = webdriver.Firefox(executable_path=GeckoDriverManager().install(),
-                                                  options=self._options)
+                self._browser = webdriver.Firefox(
+                    # executable_path=GeckoDriverManager().install(),
+                    options=self._options
+                )
+        logger.debug("Firefox Initialized")
