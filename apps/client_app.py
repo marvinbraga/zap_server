@@ -23,7 +23,7 @@ def connect_to_server():
     c = Client(('127.0.0.1', 8777), authkey=settings.AUTH_KEY.encode())
     commands = [
         # 'user_token||GetQrCode',
-        'user_token||SendMessage||Automatzap ALTER 3||Message Test by Client.',
+        'user_token||SendMessage||My Group or Person||My Message!',
         # 'user_token||GroupGetInviteLink||Group Name',
         # 'user_token||GroupOnlyAdminsChangeGroupData||Group Name',
         # 'user_token||GroupAllUsersChangeGroupData||Group Name',
